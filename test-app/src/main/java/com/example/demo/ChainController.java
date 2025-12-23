@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.Method;
 
+// BROKEN - TO BE FIXED!!!
+
 /**
  * Shows the Spring4Shell property chain in plain text.
  * Access: GET /debug/chain

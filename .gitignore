@@ -4,6 +4,8 @@ test-app/.mvn/
 test-app/*.jar
 test-app/*.war
 
+# Python env
+exploit/*
 
 # Runtime
 pids/

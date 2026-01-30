@@ -83,7 +83,7 @@ jobs:
             org.opencontainers.image.authors=${{ env.IMAGE_AUTHORS }}
             org.opencontainers.image.vendor=${{ env.IMAGE_VENDOR }}
             org.opencontainers.image.licenses=${{ env.IMAGE_LICENSES }}
-            org.opencontainers.image.url=${{ steps.image_meta.outputs.dockerfile_url }}
+            org.opencontainers.image.url=${{ github.repositoryUrl }}/test-app/Dockerfile
             org.opencontainers.image.documentation=https://github.com/${{ github.repository }}/blob/main/docs/README.md
             org.opencontainers.image.base.name=${{ steps.base_image.outputs.name }}
             org.opencontainers.image.base.digest=${{ steps.base_image.outputs.digest }}

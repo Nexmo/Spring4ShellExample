@@ -72,7 +72,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: local/my-application
+          images: test-app
           tags: |
             type=ref,event=branch
             type=sha,prefix=
@@ -95,7 +95,7 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: test-app
           push: false
           load: true  # Load image into local Docker daemon
           tags: ${{ steps.meta.outputs.tags }}

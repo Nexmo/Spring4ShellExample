@@ -17,7 +17,6 @@ on:
 env:
   # Default values - customize these for your project
   DEFAULT_IMAGE_TITLE: "My Example Application"
-  DEFAULT_IMAGE_DESCRIPTION: "A microservice handling user authentication and authorization"
   IMAGE_AUTHORS: "platform-team@example.com,#slack-platform-team"
   IMAGE_VENDOR: "ACME Corporation"
   IMAGE_LICENSES: "Apache-2.0"
@@ -80,7 +79,7 @@ jobs:
           # Labels using OCI standard keys
           labels: |
             org.opencontainers.image.title=${{ env.DEFAULT_IMAGE_TITLE }}
-            org.opencontainers.image.description=${{ env.DEFAULT_IMAGE_DESCRIPTION }}
+            org.opencontainers.image.description=${{ github.event.repository.description }}"
             org.opencontainers.image.authors=${{ env.IMAGE_AUTHORS }}
             org.opencontainers.image.vendor=${{ env.IMAGE_VENDOR }}
             org.opencontainers.image.licenses=${{ env.IMAGE_LICENSES }}
@@ -89,9 +88,11 @@ jobs:
             org.opencontainers.image.base.name=${{ steps.base_image.outputs.name }}
             org.opencontainers.image.base.digest=${{ steps.base_image.outputs.digest }}
 
-      # ============================================================
-      # Step 6: Build image (no push)
-      # ============================================================
+      - name: Build the app
+        run: |
+          cd test-app
+          make build
+          
       - name: Build image
         uses: docker/build-push-action@v5
         with:
@@ -103,9 +104,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # ============================================================
-      # Step 7: Display all labels on the built image
-      # ============================================================
       - name: Display image labels
         run: |
           echo "=============================================="

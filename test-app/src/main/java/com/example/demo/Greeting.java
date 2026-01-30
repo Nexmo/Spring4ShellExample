@@ -23,7 +23,7 @@ package com.example.demo;
  *   4. Trigger log rotation to write the malicious file
  * 
  * The attack chain:
- *   User -> getClass() -> Class
+ *   greetings -> getClass() -> Class
  *        -> getModule() -> Module (JDK 9+ only!)
  *        -> getClassLoader() -> WebappClassLoaderBase
  *        -> getResources() -> WebResourceRoot
@@ -49,16 +49,7 @@ package com.example.demo;
 
 public class Greeting {
 
-	private long id;
 	private String content;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
     /*
      * 

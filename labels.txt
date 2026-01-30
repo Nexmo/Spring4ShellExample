@@ -1,0 +1,14 @@
+org.opencontainers.image.created (MUST): Date of image build (string, date-time as defined by RFC 3339).
+org.opencontainers.image.authors (MUST): Contact details of the team responsible for the container. This may either be a team email or slack channel that is assigned to the team in the orgdata repository.
+com.vonage.orgdata.id (MUST): Internal unique team identified (id) as defined in orgdata (e.g. "ept" for the Engineering Productivity Team. See also: Operational Organization Data
+org.opencontainers.image.title (MUST): Human-readable title of the image.
+org.opencontainers.image.revision (MUST): Git hash identifying the version of the container source in GitHub.
+org.opencontainers.image.source (MUST): URL of GitHub repo. Used by Renovate to include changelogs in PRs that update image versions (ref).
+org.opencontainers.image.base.name (MUST): Provides traceability of base container usage. This SHOULD be the immediate image sharing zero-indexed layers with the image, such as from a Dockerfile FROM statement. This SHOULD be a fully qualified reference name, without any assumed default registry (e.g., registry.example.com/my-org/my-image:tag). Not required for SCRATCH images.
+org.opencontainers.image.base.digest (MUST): Provides traceability of base container usage. This SHOULD be the digest of the immediate image sharing zero-indexed layers with the image, such as from a Dockerfile FROM statement. Not required for SCRATCH images.
+org.opencontainers.image.description (SHOULD): Human-readable description of the software packaged in the image.
+org.opencontainers.image.version (SHOULD): Version of the packaged software. In general this should match a label or tag in the source code repository.
+org.opencontainers.image.url (SHOULD): URL of container build definition, e.g. Dockerfile.
+org.opencontainers.image.documentation (SHOULD): URL of container documentation. This should be a documentation page on the container registry.
+org.opencontainers.image.vendor (COULD): Name of the distributing entity, organization or individual.
+org.opencontainers.image.licenses (COULD): License(s) under which contained software is distributed as an SPDX License Expression.

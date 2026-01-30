@@ -39,7 +39,7 @@ public class GreetingController {
      *   class.module.classLoader.resources.context.parent.pipeline.first.pattern=MALICIOUS
      * 
      * Spring's data binder interprets dots as nested property access:
-     *   user.getClass()
+     *   greeting.getClass()
      *       .getModule()           // JDK 9+ only - this is why JDK 9+ is required
      *       .getClassLoader()
      *       .getResources()

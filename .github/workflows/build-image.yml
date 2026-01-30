@@ -106,9 +106,8 @@ jobs:
 
       - name: Display image labels
         run: |
-          echo "=============================================="
-          echo "          CONTAINER IMAGE LABELS              "
-          echo "=============================================="
+          IMAGE=$(echo "${{ steps.meta.outputs.tags }}" | head -1)
+          echo "Image: $IMAGE"
           echo ""
           
-          docker inspect "$IMAGE_TAG" --format='{{json .Config.Labels}}' | jq '.'
+          docker inspect "$IMAGE" --format='{{json .Config.Labels}}' | jq '.'

@@ -18,11 +18,6 @@ env:
   # Container Image Labeling 
   TEAM_ORGDATA_EMAIL: "api.eng.ept@vonage.com"
   TEAM_ORGDATA_ID: "ept"
-  # Default values - customize these for your project
-  DEFAULT_IMAGE_TITLE: "My Example Application"
-
-  IMAGE_VENDOR: "ACME Corporation"
-  IMAGE_LICENSES: "Apache-2.0"
 
 jobs:
   build:

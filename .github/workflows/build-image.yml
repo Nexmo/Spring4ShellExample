@@ -15,9 +15,12 @@ on:
         default: 'manual-build'
 
 env:
+  # Container Image Labeling 
+  TEAM_ORGDATA_EMAIL: "api.eng.ept@vonage.com"
+  TEAM_ORGDATA_ID: "ept"
   # Default values - customize these for your project
   DEFAULT_IMAGE_TITLE: "My Example Application"
-  IMAGE_AUTHORS: "platform-team@example.com,#slack-platform-team"
+
   IMAGE_VENDOR: "ACME Corporation"
   IMAGE_LICENSES: "Apache-2.0"
 
@@ -67,6 +70,27 @@ jobs:
           
           echo "Base image digest: $BASE_DIGEST"
 
+      - name: Get SPDX license id
+        id: license
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          spdx=$(
+            curl -sS \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "${{ github.api_url }}/repos/${{ github.repository }}/license" \
+              | jq -r '.license.spdx_id // empty'
+          )
+
+          if [ -z "$spdx" ] || [ "$spdx" = "NOASSERTION" ]; then
+            echo "Could not determine SPDX id (missing license or unrecognized)."
+            exit 1
+          fi
+
+          echo "spdx=$spdx" >> "$GITHUB_OUTPUT"
+          echo "SPDX: $spdx"
+
       - name: Generate Docker metadata
         id: meta
         uses: docker/metadata-action@v5
@@ -78,16 +102,16 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
           # Labels using OCI standard keys
           labels: |
-            org.opencontainers.image.title=${{ env.DEFAULT_IMAGE_TITLE }}
-            org.opencontainers.image.description=${{ github.event.repository.description }}"
-            org.opencontainers.image.authors=${{ env.IMAGE_AUTHORS }}
-            org.opencontainers.image.vendor=${{ env.IMAGE_VENDOR }}
-            org.opencontainers.image.licenses=${{ env.IMAGE_LICENSES }}
-            org.opencontainers.image.url=${{ github.repositoryUrl }}/test-app/Dockerfile
-            org.opencontainers.image.documentation=https://github.com/${{ github.repository }}/blob/main/docs/README.md
+            org.opencontainers.image.authors=${{ env.TEAM_ORGDATA_EMAIL }}
+            com.vonage.orgdata.id=${{ env.TEAM_ORGDATA_ID }}
+            org.opencontainers.image.title=${{ github.event.repository }}
             org.opencontainers.image.base.name=${{ steps.base_image.outputs.name }}
             org.opencontainers.image.base.digest=${{ steps.base_image.outputs.digest }}
-
+            org.opencontainers.image.description=${{ github.event.repository.description }}
+            org.opencontainers.image.url=${{ github.repositoryUrl }}/test-app/Dockerfile
+            org.opencontainers.image.documentation=${{ github.repositoryUrl }}/README.md
+            org.opencontainers.image.vendor=${{ github.repository_owner }}
+            org.opencontainers.image.licenses=${{ steps.license.outputs.spdx }}
       - name: Build the app
         run: |
           cd test-app

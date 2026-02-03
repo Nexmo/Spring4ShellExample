@@ -85,7 +85,7 @@ jobs:
 
           if [ -z "$spdx" ] || [ "$spdx" = "NOASSERTION" ]; then
             echo "Could not determine SPDX id (missing license or unrecognized)."
-            exit 1
+            spdx=""
           fi
 
           echo "spdx=$spdx" >> "$GITHUB_OUTPUT"

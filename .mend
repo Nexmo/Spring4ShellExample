@@ -21,7 +21,8 @@
     "baseBranches": ["wip"],
     "dependencyDashboard": true,
     "dependencyDashboardTitle": "Renovate Dashboard 🚧",
-    "dependencyDashboardOSVVulnerabilitySummary": "unresolved",
+    "osvVulnerabilityAlerts": true,
+    "dependencyDashboardOSVVulnerabilitySummary": "all",
     "major": {
       "dependencyDashboardApproval": true
     },

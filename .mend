@@ -15,7 +15,8 @@
       "config:base",
       "github>whitesource/merge-confidence:beta",
       ":semanticCommits",
-      ":rebaseStalePrs"
+      ":rebaseStalePrs",
+      "docker:enableMajor"
     ],
     "baseBranches": ["wip"],
     "dependencyDashboard": true,

@@ -11,7 +11,7 @@
   },
   "leastVulnerablePackageSettings": {                 
     "enabled": true     
-  }
+  },
   "remediateSettings": {
     "enableRenovate": true,
     "extends": [

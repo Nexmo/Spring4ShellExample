@@ -27,6 +27,15 @@
     },
     "packageRules": [
       {
+        "enabled": true,
+        "matchDatasources": [
+          "docker"
+        ],
+        "matchUpdateTypes": [
+          "minor"
+        ]
+      },
+      {
         "matchUpdateTypes": ["patch", "minor"],
         "labels": ["patch release"]
       },

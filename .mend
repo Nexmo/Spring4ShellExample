@@ -1,5 +1,14 @@
 {
   "settingsInheritedFrom": "nexmo/whitesource-config",
+  "scanSettings": {
+        "baseBranches": [
+            "wip",
+        ],
+        "enableLicenseViolations": true,
+        "enableIaC": true,
+        "enableReachability": true,
+        "exploitability": true
+  },
   "remediateSettings": {
     "enableRenovate": true,
     "extends": [
@@ -29,7 +38,7 @@
     ],
     "minimumReleaseAge": "5 days",
     "osvVulnerabilityAlerts": true,
-    "prConcurrentLimit": 3,
+    "prConcurrentLimit": 5,
     "separateMinorPatch": true,
     "separateMultipleMajor": true
   }

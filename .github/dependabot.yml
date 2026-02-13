@@ -1,1 +1,15 @@
-
+version: 2
+updates:
+  # Scan Dockerfiles for base image vulnerabilities
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    
+  # Scan Java dependencies (Maven)
+  - package-ecosystem: "maven"
+    directory: "/test-app"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10

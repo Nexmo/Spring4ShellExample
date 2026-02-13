@@ -1,0 +1,36 @@
+{
+  "settingsInheritedFrom": "vonage-technology/whitesource-config@main",
+  "remediateSettings": {
+    "enableRenovate": true,
+    "extends": [
+      "config:base",
+      "github>whitesource/merge-confidence:beta",
+      ":semanticCommits",
+      ":rebaseStalePrs"
+    ],
+    "baseBranches": ["wip"],
+    "dependencyDashboard": true,
+    "dependencyDashboardTitle": "Renovate Dashboard 🚧",
+    "dependencyDashboardOSVVulnerabilitySummary": "unresolved",
+    "major": {
+      "dependencyDashboardApproval": true
+    },
+    "packageRules": [
+      {
+        "matchUpdateTypes": ["patch", "minor"],
+        "labels": ["patch release"]
+      },
+      {
+        "matchDepTypes": ["devDependencies"],
+        "matchUpdateTypes": ["patch", "minor"],
+        "groupName": "devDependencies (non-major)",
+        "groupSlug": "dev-dependencies-non-major"
+      }
+    ],
+    "minimumReleaseAge": "5 days",
+    "osvVulnerabilityAlerts": true,
+    "prConcurrentLimit": 3,
+    "separateMinorPatch": true,
+    "separateMultipleMajor": true
+  }
+}

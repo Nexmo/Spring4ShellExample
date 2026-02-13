@@ -2,22 +2,18 @@
   "settingsInheritedFrom": "nexmo/whitesource-config",
   "scanSettings": {
         "baseBranches": [
-            "wip",
+            "wip"
         ],
         "enableLicenseViolations": true,
         "enableIaC": true,
         "enableReachability": true,
         "exploitability": true
   },
- "leastVulnerablePackageSettings": {                 
+  "leastVulnerablePackageSettings": {                 
     "enabled": true     
   }
   "remediateSettings": {
     "enableRenovate": true,
-    "workflowRules": {
-      "enabled": true,
-      "minVulnerabilitySeverity": "LOW"
-    },
     "extends": [
       "config:base",
       "github>whitesource/merge-confidence:beta",
@@ -26,6 +22,10 @@
       "docker:enableMajor",
       "mergeConfidence:all-badges"
     ],
+    "workflowRules": {
+      "enabled": true,
+      "minVulnerabilitySeverity": "MEDIUM"
+    },
     "baseBranches": ["wip"],
     "dependencyDashboard": true,
     "dependencyDashboardTitle": "Renovate Dashboard 🚧",
@@ -40,9 +40,7 @@
         "matchDatasources": [
           "docker"
         ],
-        "matchUpdateTypes": [
-          "minor"
-        ]
+        "matchUpdateTypes": [ "minor" ]
       },
       {
         "matchUpdateTypes": ["patch", "minor"],
@@ -55,8 +53,8 @@
         "groupSlug": "dev-dependencies-non-major"
       }
     ],
-    "minimumReleaseAge": "1 days",
-    "prConcurrentLimit": 5,
+    "minimumReleaseAge": "2 days",
+    "prConcurrentLimit": 10,
     "separateMinorPatch": true,
     "separateMultipleMajor": true
   }

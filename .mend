@@ -9,14 +9,22 @@
         "enableReachability": true,
         "exploitability": true
   },
+ "leastVulnerablePackageSettings": {                 
+    "enabled": true     
+  }
   "remediateSettings": {
     "enableRenovate": true,
+    "workflowRules": {
+      "enabled": true,
+      "minVulnerabilitySeverity": "LOW"
+    },
     "extends": [
       "config:base",
       "github>whitesource/merge-confidence:beta",
       ":semanticCommits",
       ":rebaseStalePrs",
-      "docker:enableMajor"
+      "docker:enableMajor",
+      "mergeConfidence:all-badges"
     ],
     "baseBranches": ["wip"],
     "dependencyDashboard": true,
@@ -47,8 +55,7 @@
         "groupSlug": "dev-dependencies-non-major"
       }
     ],
-    "minimumReleaseAge": "5 days",
-    "osvVulnerabilityAlerts": true,
+    "minimumReleaseAge": "1 days",
     "prConcurrentLimit": 5,
     "separateMinorPatch": true,
     "separateMultipleMajor": true

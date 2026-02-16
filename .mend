@@ -26,10 +26,6 @@
       "docker:enableMajor",
       "mergeConfidence:all-badges"
     ],
-    "workflowRules": {
-      "enabled": true,
-      "minVulnerabilitySeverity": "MEDIUM"
-    },
     "baseBranches": ["wip"],
     "dependencyDashboard": true,
     "dependencyDashboardTitle": "Renovate Dashboard 🚧",

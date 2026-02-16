@@ -13,6 +13,10 @@
     "enabled": true     
   },
   "remediateSettings": {
+    "workflowRules": {
+      "enabled": true,
+      "minVulnerabilitySeverity": "CRITICAL"
+    },
     "enableRenovate": true,
     "extends": [
       "config:base",

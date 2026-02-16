@@ -1,0 +1,9 @@
+# VULNERABLE Alpine 3.23.1 (PRE-CVE-2025-15467 fix)
+# For testing vulnerability scanning/fixing tools
+FROM alpine:3.23.1
+
+# Install vulnerable OpenSSL (pre-Jan 2026 patches)
+RUN apk add --no-cache openssl
+
+# Sleep for tool testing
+CMD ["sleep", "1000"]

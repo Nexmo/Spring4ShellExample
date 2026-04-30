@@ -1,5 +1,11 @@
 name: AI Adoption Report
 
+# if you don't need the GITHUB token
+permissions: {}
+# if you need read access to repo:
+# permissions: read-all 
+# if you need write access then this should be inside the respective job
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -13,4 +19,7 @@ on:
 jobs:
   ai-adoption:
     uses: vonage-technology/api-ept-ai-forge/.github/workflows/ai-adoption-v2.yml@main
+    # example granural permissions
+    permissions:
+      models: read
     secrets: inherit

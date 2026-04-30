@@ -10,6 +10,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
+    # passing inputs to build break SLSA contract - builds need to fully
+    # repeatable by the same code
+    # if we ever what to implement SLSA this would need to be gone
     inputs:
       pr_number:
         description: 'PR number to analyze'

@@ -1,6 +1,6 @@
 # VULNERABLE Alpine 3.20 (PRE-CVE-2025-15467 fix)
 # For testing vulnerability scanning/fixing tools
-FROM alpine:3.20
+FROM alpine:3.24
 
 # Install vulnerable OpenSSL (pre-Jan 2026 patches)
 RUN apk add --no-cache openssl
